@@ -1,0 +1,21 @@
+1.Sliding window concept: 4 Patterns
+  1.1 Constant Window
+  1.2 Longest subarray or substring with <condition>
+  1.3
+  1.4 
+1.1 CONSTANT WINDOW PROBLEMS: 
+  Basic problem :-
+      arr = list(map(int,input().split()))
+      k = int(input())
+      left = 0
+      right = k-1
+      Sum = sum(arr[0:k])
+      maxSum = Sum
+      n=len(arr)
+      while(right<n-1):
+          Sum-=arr[left]
+          left+=1
+          right+=1
+          Sum+=arr[right]
+          maxSum = max(maxSum, Sum)
+      print(maxSum)
