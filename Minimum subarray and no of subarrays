@@ -29,26 +29,38 @@ class Solution(object):
         if(sIndex == -1):
             return ""
         return s[sIndex:sIndex+minLen]
-Leetcode problem : 424 Longest repeating character replacement
+
+Leetcode problem : 930 Binar subarrays with sum
 Code :
 class Solution(object):
-    def characterReplacement(self, s, k):
-        n=len(s)
-        left,right = 0,0
-        maxLen=0
-        d={}
-        maxF = 0
-        while(right<n):
-            if(s[right] in d):
-                d[s[right]]+=1
-            else:
-                d[s[right]]=1
-            maxF = max(maxF,d[s[right]])
-            while((right-left+1)-maxF>k):
-                d[s[left]]-=1
-                if(d[s[left]]==0):
-                    del d[s[left]]
-                left+=1
-            maxLen=max(maxLen,right-left+1)
-            right+=1
-        return maxLen
+    def numSubarraysWithSum(self, nums, goal):
+        def func(nums,goal):
+            if(goal<0):
+                return 0
+            Sum=0
+            count=0
+            n=len(nums)
+            left,right = 0,0
+            while(right<n):
+                Sum+=nums[right]
+                while(Sum>goal):
+                    Sum-= nums[left]
+                    left+=1
+                count+=(right-left+1)
+                right+=1
+            return count
+        return func(nums,goal) - func(nums,goal-1)
+
+Leetcode problem : 455 Assign Cookies
+Code :
+class Solution(object):
+    def findContentChildren(self, g, s):
+        g.sort()
+        s.sort()
+        i=0
+        j=0
+        while(i<len(g) and j<len(s)):
+            if(s[j]>=g[i]):
+                i+=1
+            j+=1
+        return i
