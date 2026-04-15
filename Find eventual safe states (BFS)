@@ -1,0 +1,27 @@
+class Solution:
+    def eventualSafeNodes(self, graph):
+        V = len(graph)    
+        def dfs(i):
+            vis[i] = 1
+            pathVis[i] = 1
+            
+            for j in graph[i]:
+                if vis[j] == 0:
+                    if dfs(j):
+                        return True
+                elif pathVis[j] == 1:
+                    return True     
+            safe[i] = 1
+            pathVis[i] = 0
+            return False
+        vis = [0] * V
+        pathVis = [0] * V
+        safe = [0] * V 
+        for i in range(V):
+            if vis[i] == 0:
+                dfs(i)
+        ans = []
+        for i in range(V):
+            if safe[i] == 1:
+                ans.append(i)   
+        return ans
