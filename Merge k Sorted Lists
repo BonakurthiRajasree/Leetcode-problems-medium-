@@ -1,0 +1,14 @@
+Class Solution(object):
+    def mergeKLists(self, lists):
+        values = []
+        for head in lists:
+            while head:
+                values.append(head.val)
+                head = head.next
+        values.sort()
+        dummy = ListNode(0)
+        curr = dummy
+        for val in values:
+            curr.next = ListNode(val)
+            curr = curr.next
+        return dummy.next
