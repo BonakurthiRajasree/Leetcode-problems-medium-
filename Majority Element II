@@ -1,0 +1,12 @@
+#229
+from collections import Counter
+class Solution(object):
+    def majorityElement(self, nums):
+        n = len(nums)
+        d = Counter(nums)
+        result = []
+        for num, freq in d.items():
+            if(freq>n//3):
+                result.append(num)
+        return result
+        
